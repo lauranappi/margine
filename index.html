@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Margine — note a margine sul mondo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f5f0e8;
+      --bg-card:   #ede7d9;
+      --ink:       #2c1f0e;
+      --ink-mid:   #6b5540;
+      --ink-light: #a08c75;
+      --accent:    #7a4f2d;
+      --border:    #d4c4ad;
+      --serif:     'Playfair Display', Georgia, serif;
+      --body:      'Source Serif 4', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 1.4rem 2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-tagline {
+      font-size: 13px;
+      color: var(--ink-light);
+      font-style: italic;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 720px;
+      margin: 5rem auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(38px, 6vw, 58px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--ink-mid);
+      max-width: 540px;
+    }
+
+    /* ARTICLES LIST */
+    .articles-section {
+      max-width: 720px;
+      margin: 0 auto 6rem;
+      padding: 0 2rem;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      border-top: 1px solid var(--border);
+      padding-top: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .article-card {
+      display: block;
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 0;
+      transition: background 0.2s;
+    }
+
+    .article-card:first-of-type {
+      border-top: 1px solid var(--border);
+    }
+
+    .article-card:hover .card-title {
+      color: var(--accent);
+    }
+
+    .card-meta {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 0.6rem;
+    }
+
+    .card-title {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 0.7rem;
+      transition: color 0.2s;
+    }
+
+    .card-subtitle {
+      font-size: 16px;
+      color: var(--ink-mid);
+      line-height: 1.6;
+      font-style: italic;
+      max-width: 520px;
+    }
+
+    .card-arrow {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-light);
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Margine</a>
+    <span class="nav-tagline">note a margine sul mondo</span>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-label">Saggi · Cultura · Società</p>
+    <h1>Guardare il mondo<br>da un altro angolo</h1>
+    <p>Un luogo per riflessioni lente su come percepiamo la realtà, come la società si organizza attorno a quella percezione, e tutto quello che resta fuori dal frame.</p>
+  </section>
+
+  <section class="articles-section">
+    <p class="section-label">Articoli</p>
+
+    <a class="article-card" href="articoli/il-mondo-esiste-solo-se-si-vede.html">
+      <p class="card-meta">Percezione &amp; Società · Giugno 2026</p>
+      <h2 class="card-title">Il mondo esiste solo se si vede</h2>
+      <p class="card-subtitle">Come la supremazia evolutiva della vista ha plasmato non solo la nostra percezione, ma l'intera architettura della civiltà — e perché tutto ciò che non si mostra tende a non esistere.</p>
+      <span class="card-arrow">Leggi →</span>
+    </a>
+
+    <!-- TEMPLATE PER NUOVI ARTICOLI — copia e incolla il blocco qui sopra -->
+
+  </section>
+
+  <footer>
+    Margine · note a margine sul mondo
+  </footer>
+
+</body>
+</html>

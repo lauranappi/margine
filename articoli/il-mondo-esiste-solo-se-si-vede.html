@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Il mondo esiste solo se si vede — Margine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f5f0e8;
+      --bg-card:   #ede7d9;
+      --ink:       #2c1f0e;
+      --ink-mid:   #6b5540;
+      --ink-light: #a08c75;
+      --accent:    #7a4f2d;
+      --border:    #d4c4ad;
+      --serif:     'Playfair Display', Georgia, serif;
+      --body:      'Source Serif 4', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 1.4rem 2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 13px;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    /* ARTICLE HEADER */
+    .article-header {
+      max-width: 700px;
+      margin: 4rem auto 3rem;
+      padding: 0 2rem;
+    }
+
+    .art-kicker {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(30px, 5vw, 46px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+
+    .art-subtitle {
+      font-size: 19px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.6;
+      border-left: 2px solid var(--border);
+      padding-left: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .art-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+
+    /* BODY */
+    article {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.9;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 3rem 0 1rem;
+      line-height: 1.3;
+    }
+
+    .pullquote {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.5;
+      border-top: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border);
+      padding: 1.4rem 0;
+      margin: 2.5rem 0;
+    }
+
+    .art-note {
+      font-size: 14px;
+      color: var(--ink-mid);
+      border-left: 2px solid var(--border);
+      padding-left: 1rem;
+      margin: 2rem 0;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .art-footer {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--ink-light);
+      letter-spacing: 0.05em;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-light);
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Margine</a>
+    <a href="../index.html" class="nav-back">← tutti gli articoli</a>
+  </nav>
+
+  <div class="article-header">
+    <p class="art-kicker">Percezione &amp; Società · Giugno 2026</p>
+    <h1>Il mondo esiste solo se si vede</h1>
+    <p class="art-subtitle">Come la supremazia evolutiva della vista ha plasmato non solo la nostra percezione, ma l'intera architettura della civiltà — e perché tutto ciò che non si mostra tende a non esistere.</p>
+    <hr class="art-divider">
+  </div>
+
+  <article>
+
+    <p>C'è un esperimento mentale semplice. Immaginate di stare male — non per una ferita visibile, non per un braccio rotto, ma per qualcosa di interno, silenzioso, che non lascia tracce sulla pelle. Quante persone vi chiedono come state? Ora immaginate di avere un graffio profondo sul viso. Il mondo si organizza attorno a voi in modo completamente diverso. Non perché sia più importante. Ma perché <strong>si vede</strong>.</p>
+
+    <p>Questo piccolo esperimento rivela qualcosa di strutturale nel modo in cui gli esseri umani percepiscono la realtà e, di conseguenza, nel modo in cui hanno organizzato la loro società. <strong>La vista non è solo il senso predominante: è diventata il filtro attraverso cui decidiamo cosa esiste, cosa conta, cosa merita risposta.</strong></p>
+
+    <h2>Un'eredità evolutiva a tre colori</h2>
+
+    <p>La storia comincia lontano. Quasi tutti i mammiferi — cani, gatti, topi, cavalli — sono dicromati: vedono il mondo attraverso due soli tipi di fotorecettori. I primati, invece, svilupparono nel corso dell'evoluzione la <strong>visione tricromatica</strong>, la capacità di distinguere tre canali di colore, inclusi il rosso e il verde. Una mutazione genetica straordinaria, assente nel resto dei mammiferi.</p>
+
+    <p>Le ipotesi sull'origine di questo salto evolutivo sono principalmente due. La prima, più classica, sostiene che la tricromazia servisse a individuare frutti maturi nel fogliame — distinguere il rosso dall'arancio dal verde in un ambiente denso di vegetazione era un vantaggio alimentare decisivo. La seconda ipotesi, più recente e forse più rivelatrice, suggerisce che la visione a colori si sia evoluta anche per <strong>leggere lo stato emotivo degli altri</strong>: il rossore del viso, il pallore della paura, le variazioni cromatiche della pelle che segnalano salute, eccitazione, pericolo.</p>
+
+    <p>In entrambi i casi, la vista si rafforza come strumento di sopravvivenza primario. Circa il <strong>30% della corteccia cerebrale umana</strong> è dedicata all'elaborazione visiva, una proporzione che non ha paragoni con gli altri sensi. Siamo, biologicamente, animali che vedono prima di tutto il resto.</p>
+
+    <div class="pullquote">
+      «Il cane non ha bisogno di vederti piangere per sapere che stai male. Lo sente chimicamente, nel cortisolo, nell'adrenalina. Noi invece aspettiamo le lacrime.»
+    </div>
+
+    <h2>La saliency visiva del dolore</h2>
+
+    <p>Il confronto con i cani non è una romanticizzazione. È una differenza cognitiva reale. I cani basano la loro lettura del mondo sugli odori: rilevano cambiamenti ormonali, stati emotivi, malattie, attraverso un sistema olfattivo di straordinaria precisione. Percepiscono lo <strong>stato interno</strong> di un essere vivente in modo diretto, quasi senza mediazione.</p>
+
+    <p>Gli esseri umani funzionano diversamente. Per attivare la nostra risposta empatica abbiamo bisogno di un <strong>segnale esterno visibile</strong> — le lacrime, la smorfia, la ferita, il sangue. Questi segnali sono già una traduzione: il dolore interno deve prima convertirsi in qualcosa che si vede. E quella traduzione può mancare, può essere soppressa, può essere falsa.</p>
+
+    <p>La ricerca scientifica ha misurato questo fenomeno in modo preciso. Uno studio pubblicato su PubMed ha analizzato il comportamento di medici e infermieri di fronte a pazienti con dolore cronico: quelli con segni visibili (artrite reumatoide, sindrome dolorosa regionale complessa) ricevevano cure significativamente più empatiche rispetto a quelli con condizioni invisibili come la fibromialgia o la sindrome di Ehlers-Danlos. Non per malevolenza, ma per un <strong>bias inconscio che privilegia automaticamente ciò che si può vedere</strong>.</p>
+
+    <div class="art-note">Secondo gli autori dello studio, «la visibilità del dolore è un fattore importante che contribuisce all'uso aumentato di empatia da parte di infermieri e medici, e la sua assenza può costituire una barriera alla qualità delle cure».</div>
+
+    <p>Ricerche parallele mostrano che le <strong>disabilità invisibili</strong> — che rappresentano il 70-80% di tutte le disabilità — sono sistematicamente sottorappresentate nella ricerca, sottostimate nella vita sociale, e affrontate con atteggiamenti più negativi rispetto a quelle visibili. La cecità vede più tutele della depressione. La sedia a rotelle suscita più solidarietà della dipendenza. Non perché la società sia crudele, ma perché i suoi meccanismi empatici sono calibrati sul visibile.</p>
+
+    <h2>Le istituzioni come architettura del visibile</h2>
+
+    <p>Se il bias è cognitivo e percettivo, inevitabilmente si sedimenta nelle strutture. <strong>La civiltà occidentale ha costruito le sue istituzioni fondamentali come se la realtà coincidesse con ciò che è osservabile, misurabile, mostrabile.</strong></p>
+
+    <p>Il potere ha sempre investito nella propria visibilità: palazzi, uniformi, tribunali, tribune. Chi governa si rende visibile perché la percezione dell'autorità passa dall'apparenza. Gli studi sull'altezza dei leader politici mostrano che i candidati più alti — che occupano più spazio visivo — vengono percepiti come più competenti, in modo sistematico e trasversale alle culture.</p>
+
+    <p>L'economia premia il lavoro che produce oggetti tangibili. <strong>Il lavoro di cura</strong> — l'assistenza, l'educazione, il sostegno emotivo — è storicamente sottopagato e sottoconosciuto perché non lascia tracce visibili. Non si vede cosa fa una madre, un insegnante, un badante. Il PIL stesso è una misura dei flussi visibili e monetizzati: non conta il tempo donato, la relazione costruita, la comunità tenuta insieme.</p>
+
+    <p>Il diritto esiste nella misura in cui esiste la prova. Un contratto vale se è scritto. Un torto conta se è dimostrabile. <strong>Il danno emotivo, la violenza psicologica, il mobbing sottile</strong> sono entrati negli ordinamenti giuridici tardissimo, con enorme resistenza, perché richiedono di rendere visibile l'invisibile. Il testimone oculare vale più del testimone auricolare. La ferita fotografata conta più della sofferenza raccontata.</p>
+
+    <div class="pullquote">
+      «I social media sono l'estremo logico di questa tendenza: una macchina progettata per misurare l'esistenza in unità visibili. Vali quanto mostri. Esisti quanto sei visto.»
+    </div>
+
+    <h2>Le crisi come crisi di visibilità</h2>
+
+    <p>Questa prospettiva permette di rileggere molte delle crisi contemporanee sotto una luce diversa.</p>
+
+    <p>La <strong>crisi della salute mentale</strong> non è solo un problema clinico: è anche un problema di visibilità. La depressione non si vede. L'ansia non si vede. Il burnout non si vede — finché non si manifesta con conseguenze fisiche o comportamentali impossibili da ignorare. Le persone vengono prese sul serio quando crollano in modo spettacolare, non quando soffrono in modo silenzioso.</p>
+
+    <p>La <strong>crisi ecologica</strong> ha guadagnato attenzione pubblica quando è diventata visibile — quando le immagini satellitari dei ghiacciai che si ritirano, gli oceani di plastica, i polmoni anneriti hanno iniziato a circolare. Il riscaldamento globale era misurato da decenni, ma è diventato una priorità politica quando ha iniziato a produrre eventi visibili: alluvioni, incendi, siccità. Il danno invisibile al clima non bastava.</p>
+
+    <p>Le <strong>disuguaglianze economiche</strong> seguono lo stesso schema: rimangono tollerate finché non si concentrano in quartieri degradati fotografabili, in file della fame televisive, in volti riconoscibili. La statistica di un milione di persone in povertà muove meno di una singola storia con un nome e un viso.</p>
+
+    <h2>Rendere visibile l'invisibile</h2>
+
+    <p>Non è un caso che alcune delle conquiste più importanti della civiltà siano state, in fondo, <strong>tecnologie di visibilità</strong>. La scrittura ha reso visibili i pensieri. La medicina ha inventato strumenti — raggi X, risonanze magnetiche, esami del sangue — per rendere visibile il corpo interno. La letteratura e la poesia sono tentativi di tradurre in immagini e parole stati emotivi altrimenti muti. Persino la filosofia, con i suoi diagrammi e le sue categorie, è un tentativo di rendere visibile la struttura del pensiero.</p>
+
+    <p>Ma ogni volta che rendiamo visibile qualcosa, restiamo intrappolati nel bias originale: continuiamo a credere che la rappresentazione visiva sia la cosa stessa. La mappa è il territorio. La radiografia è il dolore. Il numero è la persona.</p>
+
+    <p>Forse la domanda più radicale che possiamo porci — come individui e come società — è questa: <strong>cosa stiamo ignorando perché non riesce a mostrarsi? Chi non esiste perché non sa come tradursi in segnale visivo?</strong> Quali dolori, quali bisogni, quali crisi stanno accadendo fuori dal frame?</p>
+
+    <p>I cani lo sanno già. Lo sentono nell'aria.</p>
+
+    <div class="art-footer">
+      Laura Nappi · Giugno 2026
+    </div>
+
+  </article>
+
+  <footer>
+    <a href="../index.html" style="color: var(--ink-light); text-decoration: none;">Margine</a> · note a margine sul mondo
+  </footer>
+
+</body>
+</html>
