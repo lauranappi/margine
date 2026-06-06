@@ -92,9 +92,9 @@
       width: 2px;
       background: var(--ink);
       margin-left: 3px;
-      vertical-align: middle;
+      vertical-align: top;
       position: relative;
-      height: 0.85em;
+      height: 0.8em;
       animation: blink 1.2s step-end infinite;
     }
     .cursor::before, .cursor::after {
@@ -257,7 +257,7 @@
           var blinks = 0;
           var iv = setInterval(function() {
             blinks++;
-            if (blinks >= 4) {
+            if (blinks >= 2) {
               clearInterval(iv);
               cursor.remove();
             }
