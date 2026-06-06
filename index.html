@@ -121,7 +121,7 @@
       max-width: 540px;
       position: relative;
       opacity: 0;
-      transition: opacity 0.6s;
+      transition: opacity 2.5s ease;
     }
 
     .hero p.visible { opacity: 1; }
@@ -249,7 +249,7 @@
             cursor.before(document.createTextNode(ch));
           }
           i++;
-          if (i === Math.floor(text.length / 2)) {
+          if (i === 1) {
             sub.classList.add('visible');
           }
           setTimeout(type, 28 + Math.random() * 15);
