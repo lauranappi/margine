@@ -59,6 +59,21 @@
       max-width: 720px;
       margin: 5rem auto 4rem;
       padding: 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-watermark {
+      font-family: var(--serif);
+      font-size: 180px;
+      font-weight: 500;
+      color: #ede7d9;
+      position: absolute;
+      top: -30px;
+      left: -10px;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
     }
 
     .hero h1 {
@@ -68,6 +83,22 @@
       line-height: 1.1;
       color: var(--ink);
       margin-bottom: 1.2rem;
+      position: relative;
+      min-height: 1.2em;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      background: var(--ink);
+      margin-left: 2px;
+      vertical-align: baseline;
+      animation: blink 0.6s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     .hero p {
@@ -75,6 +106,15 @@
       line-height: 1.7;
       color: var(--ink-mid);
       max-width: 540px;
+      position: relative;
+      opacity: 0;
+      transition: opacity 0.6s;
+    }
+
+    .hero p.visible { opacity: 1; }
+
+    @media (max-width: 600px) {
+      .hero-watermark { font-size: 110px; top: -15px; }
     }
 
     .articles-section {
@@ -171,9 +211,48 @@
   </nav>
 
   <section class="hero">
-    <h1>Guardare il mondo<br>da un altro angolo</h1>
-    <p>Saggi, osservazioni, letture del presente. Società, cultura, politica — tutto quello che vale la pena guardare da vicino.</p>
+    <div class="hero-watermark" aria-hidden="true">M</div>
+    <h1 id="hero-title"></h1>
+    <p id="hero-sub">Saggi, osservazioni, letture del presente. Società, cultura, politica — tutto quello che vale la pena guardare da vicino.</p>
   </section>
+
+  <script>
+    (function() {
+      var el = document.getElementById('hero-title');
+      var sub = document.getElementById('hero-sub');
+      var text = 'Guardare il mondo\nda un altro angolo';
+      var i = 0;
+      var cursor = document.createElement('span');
+      cursor.className = 'cursor';
+      cursor.style.height = '0.85em';
+      el.appendChild(cursor);
+
+      function type() {
+        if (i < text.length) {
+          var ch = text[i];
+          if (ch === '\n') {
+            cursor.before(document.createElement('br'));
+          } else {
+            cursor.before(document.createTextNode(ch));
+          }
+          i++;
+          setTimeout(type, 55 + Math.random() * 30);
+        } else {
+          var blinks = 0;
+          var iv = setInterval(function() {
+            blinks++;
+            if (blinks >= 4) {
+              clearInterval(iv);
+              cursor.remove();
+              sub.classList.add('visible');
+            }
+          }, 600);
+        }
+      }
+
+      setTimeout(type, 300);
+    })();
+  </script>
 
   <section class="articles-section">
     <p class="section-label">Articoli</p>
