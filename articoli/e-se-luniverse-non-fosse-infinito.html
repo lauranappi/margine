@@ -172,9 +172,21 @@
       .article-header { padding: 0 1.2rem; margin-top: 2rem; }
       article { padding: 0 1.2rem 4rem; }
     }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: #7a4f2d;
+      z-index: 100;
+      transition: width 0.1s linear;
+    }
   </style>
 </head>
 <body>
+  <div class="progress-bar" id="progress"></div>
 
   <nav>
     <a href="../index.html" class="nav-logo">Margine</a>
@@ -252,5 +264,17 @@
     <a href="../index.html" style="color: var(--ink-light); text-decoration: none;">Margine</a> · note a margine sul mondo
   </footer>
 
+
+  <script>
+    (function() {
+      var bar = document.getElementById('progress');
+      window.addEventListener('scroll', function() {
+        var doc = document.documentElement;
+        var scrolled = doc.scrollTop || document.body.scrollTop;
+        var total = doc.scrollHeight - doc.clientHeight;
+        bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+      });
+    })();
+  </script>
 </body>
 </html>
