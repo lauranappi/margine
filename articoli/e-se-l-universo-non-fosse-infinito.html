@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Un universo finito che esaurisce tutti gli scenari possibili è un'idea più inquietante dell'infinito.">
+  <meta property="og:description" content="Un universo finito che esaurisce tutti gli scenari possibili è un'idea più inquietante dell'infinito.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E se l'universo non fosse infinito? — Margine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f5f0e8;
+      --bg-card:   #ede7d9;
+      --ink:       #2c1f0e;
+      --ink-mid:   #6b5540;
+      --ink-light: #a08c75;
+      --accent:    #7a4f2d;
+      --border:    #d4c4ad;
+      --serif:     'Playfair Display', Georgia, serif;
+      --body:      'Source Serif 4', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 1.4rem 2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 13px;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    .article-header {
+      max-width: 700px;
+      margin: 4rem auto 3rem;
+      padding: 0 2rem;
+    }
+
+    .art-kicker {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(30px, 5vw, 46px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+
+    .art-subtitle {
+      font-size: 19px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.6;
+      border-left: 2px solid var(--border);
+      padding-left: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .art-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+
+    article {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.9;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 3rem 0 1rem;
+      line-height: 1.3;
+    }
+
+    .pullquote {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.5;
+      border-top: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border);
+      padding: 1.4rem 0;
+      margin: 2.5rem 0;
+    }
+
+    .art-note {
+      font-size: 14px;
+      color: var(--ink-mid);
+      border-left: 2px solid var(--border);
+      padding-left: 1rem;
+      margin: 2rem 0;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .art-footer {
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--ink-light);
+      letter-spacing: 0.05em;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-light);
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 600px) {
+      p { font-size: 16px; line-height: 1.8; }
+      .pullquote { font-size: 18px; }
+      nav { padding: 1.2rem; }
+      .article-header { padding: 0 1.2rem; margin-top: 2rem; }
+      article { padding: 0 1.2rem 4rem; }
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: #7a4f2d;
+      z-index: 100;
+      transition: width 0.1s linear;
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progress"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Margine</a>
+    <a href="../index.html" class="nav-back">← tutti gli articoli</a>
+  </nav>
+
+  <div class="article-header">
+    <p class="art-kicker">Fisica &amp; Filosofia · Giugno 2026</p>
+    <h1>E se l'universo non fosse infinito?</h1>
+    <p class="art-subtitle">Un universo finito che esaurisce tutti gli scenari possibili è un'idea più inquietante dell'infinito — perché implica che ogni scelta esiste già da qualche parte.</p>
+    <hr class="art-divider">
+  </div>
+
+  <article>
+
+    <p>L'infinito è rassicurante. Significa che c'è sempre altro — altro spazio, altra materia, altre possibilità. Significa che siamo unici, anche solo per ragioni statistiche. Ma c'è un'idea alternativa, meno celebrata e forse più vertiginosa: <strong>e se l'universo fosse finito, ma contenesse comunque tutto?</strong> Non infinito, ma completo. Non senza bordi, ma abbastanza grande da esaurire ogni combinazione possibile di materia ed energia.</p>
+
+    <p>Non è fantascienza. È una delle ipotesi più serie della cosmologia contemporanea.</p>
+
+    <h2>Il limite di ciò che possiamo vedere</h2>
+
+    <p>Quello che chiamiamo "universo" è in realtà solo la porzione di spazio dalla quale la luce ha avuto il tempo di raggiungerci nei 14 miliardi di anni dalla nascita del cosmo. Un orizzonte, non un confine. Oltre quell'orizzonte c'è altro spazio — quanto, non lo sappiamo. L'universo potrebbe essere infinito, oppure potrebbe essere <strong>vastissimo ma finito</strong>, con una geometria curva che si chiude su se stessa come la superficie di una sfera.</p>
+
+    <p>Se fosse finito, il numero di configurazioni possibili della materia al suo interno sarebbe anch'esso finito — enorme, inimmaginabilmente grande, ma finito. Ed è qui che la matematica inizia a dire cose scomode.</p>
+
+    <div class="pullquote">
+      «Se le configurazioni possibili sono finite e lo spazio è abbastanza grande, ogni combinazione deve necessariamente realizzarsi — e ripetersi.»
+    </div>
+
+    <h2>Tegmark e il multiverso quilted</h2>
+
+    <p>Il fisico Max Tegmark ha formalizzato questa idea in quello che chiama <strong>multiverso di Livello I</strong>. Il ragionamento è quasi brutalmente semplice: per il principio di Bekenstein, il numero di stati quantistici possibili all'interno di una regione di spazio è finito. Se lo spazio totale è abbastanza grande — anche senza essere infinito — contiene necessariamente regioni identiche alla nostra. Non universi paralleli in dimensioni separate, non bolle cosmiche isolate: <strong>la stessa struttura spaziale, con le stesse leggi fisiche, che ripete le stesse configurazioni</strong>.</p>
+
+    <p>La conseguenza più diretta è quasi comica nella sua radicalità: da qualche parte, a una distanza stimata intorno a 10 elevato alla 10^29 metri, esiste una regione di spazio identica a questa. Con lo stesso sistema solare, lo stesso pianeta, le stesse persone — che in questo momento stanno facendo esattamente le stesse cose.</p>
+
+    <div class="art-note">Tegmark non propone questa come speculazione romantica, ma come conseguenza quasi inevitabile della cosmologia standard. Negare il multiverso di Livello I, scrive, richiede di aggiungere ipotesi ad hoc alla fisica, non di rimuoverle.</div>
+
+    <h2>Nietzsche, Boltzmann e l'eterno ritorno</h2>
+
+    <p>L'idea non è nuova, anche se la versione moderna è più precisa. Nietzsche propose l'eterno ritorno come esperimento filosofico: <strong>se l'energia dell'universo è finita e il tempo è infinito, ogni configurazione possibile si ripete infinite volte</strong>. Non una volta sola — infinite volte. Questa vita, questi momenti, in eterno.</p>
+
+    <p>Boltzmann prese l'idea sul serio dal punto di vista fisico, ma arrivò a una conclusione opposta. La sua equazione sull'entropia — incisa sulla sua tomba a Vienna — mostra che i sistemi tendono spontaneamente verso il disordine, non verso l'ordine. Anche se il tempo fosse infinito, le configurazioni ordinate come la vita e la coscienza sarebbero statisticamente così rare da non ripetersi in modo significativo. <strong>L'universo non torna: si raffredda.</strong></p>
+
+    <p>La versione di Tegmark evita questo problema perché non richiede il ritorno nel tempo — richiede solo abbastanza spazio. Non cicli temporali, ma copie spaziali. La ripetizione non è nel futuro: è già lì, adesso, a distanza inimmaginabile.</p>
+
+    <h2>Il problema della scelta</h2>
+
+    <p>Se ogni configurazione possibile esiste già da qualche parte nello spazio, la domanda filosofica che emerge è inevitabile: <strong>ha ancora senso parlare di scelta?</strong></p>
+
+    <p>In un universo che contiene tutte le versioni possibili di ogni momento, ogni decisione che prendi esiste già nella sua versione alternativa. Non in un futuro ipotetico, non in una dimensione parallela accessibile — ma nello stesso spazio fisico, in una regione così lontana da essere causalmente irraggiungibile. Da qualche parte c'è una versione di te che ha scelto diversamente. Da qualche parte esiste ogni variante di ogni momento.</p>
+
+    <p>Questo non è necessariamente il determinismo classico — le leggi della fisica quantistica introducono genuina casualità a livello fondamentale. Ma è qualcosa di forse più destabilizzante: <strong>non che il futuro sia scritto, ma che tutte le versioni del presente coesistano già</strong>.</p>
+
+    <div class="pullquote">
+      «Non è che non puoi scegliere. È che ogni scelta che potresti fare esiste già, da qualche parte, realizzata da qualcuno che sei tu.»
+    </div>
+
+    <h2>Finito ma completo</h2>
+
+    <p>C'è qualcosa di paradossalmente più inquietante nell'universo finito di Tegmark rispetto all'infinito classico. L'infinito è astratto, inafferrabile, quasi mistico. Un universo finito che contiene tutto è invece <strong>concreto e materiale</strong> — è fisica, è spazio, è materia reale disposta in tutte le combinazioni che le leggi fisiche consentono.</p>
+
+    <p>Non ha bisogno di essere infinito per contenere tutto. Ha bisogno solo di essere abbastanza grande. E stando alle misurazioni attuali della geometria cosmologica — la curvatura dello spazio, la distribuzione della materia oscura, la forma delle fluttuazioni nel fondo cosmico a microonde — potrebbe esserlo.</p>
+
+    <p>L'universo non è uno sfondo neutro dentro cui accadono le cose. È la somma di tutte le cose che possono accadere. E quella somma, per quanto grande, potrebbe avere un numero.</p>
+
+
+    <p style="margin-top: 2rem;"><a href="../index.html" style="color: var(--accent); font-size: 15px; text-decoration: none;">← Tutti gli articoli</a></p>
+    <div class="art-footer">
+      Laura Nappi · Giugno 2026 · Scritto con Claude (Anthropic)
+    </div>
+
+  </article>
+
+  <footer>
+    <a href="../index.html" style="color: var(--ink-light); text-decoration: none;">Margine</a> · note a margine sul mondo
+  </footer>
+
+
+  <script>
+    (function() {
+      var bar = document.getElementById('progress');
+      window.addEventListener('scroll', function() {
+        var doc = document.documentElement;
+        var scrolled = doc.scrollTop || document.body.scrollTop;
+        var total = doc.scrollHeight - doc.clientHeight;
+        bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+      });
+    })();
+  </script>
+</body>
+</html>
