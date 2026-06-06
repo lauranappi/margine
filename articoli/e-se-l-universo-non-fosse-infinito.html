@@ -5,6 +5,11 @@
   <meta name="description" content="Un universo finito che esaurisce tutti gli scenari possibili è un'idea più inquietante dell'infinito.">
   <meta property="og:description" content="Un universo finito che esaurisce tutti gli scenari possibili è un'idea più inquietante dell'infinito.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Laura Nappi">
+  <meta property="og:title" content="E se l'universo non fosse infinito? — Margine">
+  <meta property="og:description" content="Un universo finito che esaurisce tutti gli scenari possibili è un'idea più inquietante dell'infinito.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://lauranappi.github.io/margine/articoli/e-se-l-universo-non-fosse-infinito.html">
   <title>E se l'universo non fosse infinito? — Margine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
@@ -183,6 +188,36 @@
       z-index: 100;
       transition: width 0.1s linear;
     }
+
+    .share-bar {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .share-label {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+    }
+
+    .share-btn {
+      font-size: 13px;
+      color: var(--accent);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      font-family: var(--body);
+      transition: background 0.2s;
+    }
+
+    .share-btn:hover { background: var(--bg-card); }
   </style>
 </head>
 <body>
@@ -253,7 +288,9 @@
     <p>L'universo non è uno sfondo neutro dentro cui accadono le cose. È la somma di tutte le cose che possono accadere. E quella somma, per quanto grande, potrebbe avere un numero.</p>
 
 
-    <p style="margin-top: 2rem;"><a href="../index.html" style="color: var(--accent); font-size: 15px; text-decoration: none;">← Tutti gli articoli</a></p>
+    <p style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+      <a href="../index.html" style="color: var(--accent); font-size: 15px; text-decoration: none; letter-spacing: 0.02em;">← Tutti gli articoli</a>
+    </p>
     <div class="art-footer">
       Laura Nappi · Giugno 2026 · Scritto con Claude (Anthropic)
     </div>
