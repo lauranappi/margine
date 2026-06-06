@@ -94,7 +94,7 @@
       margin-left: 3px;
       vertical-align: text-bottom;
       position: relative;
-      animation: blink 0.6s step-end infinite;
+      animation: blink 1.2s step-end infinite;
     }
     .cursor::before, .cursor::after {
       content: '';
@@ -248,7 +248,10 @@
             cursor.before(document.createTextNode(ch));
           }
           i++;
-          setTimeout(type, 55 + Math.random() * 30);
+          if (i === Math.floor(text.length / 2)) {
+            sub.classList.add('visible');
+          }
+          setTimeout(type, 28 + Math.random() * 15);
         } else {
           var blinks = 0;
           var iv = setInterval(function() {
@@ -256,9 +259,8 @@
             if (blinks >= 4) {
               clearInterval(iv);
               cursor.remove();
-              sub.classList.add('visible');
             }
-          }, 600);
+          }, 1200);
         }
       }
 
