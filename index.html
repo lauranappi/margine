@@ -12,6 +12,7 @@
 
     :root {
       --bg:        #f5f0e8;
+      --bg-card:   #ede7d9;
       --ink:       #2c1f0e;
       --ink-mid:   #6b5540;
       --ink-light: #a08c75;
@@ -21,6 +22,8 @@
       --body:      'Source Serif 4', Georgia, serif;
     }
 
+    html { scroll-behavior: smooth; }
+
     body {
       background: var(--bg);
       color: var(--ink);
@@ -29,13 +32,12 @@
       min-height: 100vh;
     }
 
-    /* NAV */
     nav {
       border-bottom: 1px solid var(--border);
       padding: 1.4rem 2rem;
       display: flex;
       align-items: baseline;
-      gap: 1.5rem;
+      gap: 2rem;
     }
 
     .nav-logo {
@@ -53,44 +55,28 @@
       font-style: italic;
     }
 
-    /* HEADER */
-    .site-header {
+    .hero {
       max-width: 720px;
-      margin: 4rem auto 0;
-      padding: 0 2rem 3rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
+      margin: 5rem auto 4rem;
+      padding: 0 2rem;
     }
 
-    .site-header-eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-light);
-    }
-
-    .site-header-title {
+    .hero h1 {
       font-family: var(--serif);
-      font-size: clamp(13px, 2vw, 15px);
+      font-size: clamp(38px, 6vw, 58px);
       font-weight: 400;
-      font-style: italic;
-      color: var(--ink-mid);
-      line-height: 1.6;
-      max-width: 480px;
-    }
-
-    .site-header-tagline {
-      font-family: var(--serif);
-      font-size: clamp(28px, 5vw, 42px);
-      font-weight: 400;
+      line-height: 1.1;
       color: var(--ink);
-      line-height: 1.15;
-      margin-top: 0.4rem;
+      margin-bottom: 1.2rem;
     }
 
-    /* ARTICLES LIST */
+    .hero p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--ink-mid);
+      max-width: 540px;
+    }
+
     .articles-section {
       max-width: 720px;
       margin: 0 auto 6rem;
@@ -102,16 +88,21 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--ink-light);
-      padding-top: 1.8rem;
-      margin-bottom: 0.5rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.2rem;
+      margin-bottom: 2.5rem;
     }
 
     .article-card {
       display: block;
       text-decoration: none;
       border-bottom: 1px solid var(--border);
-      padding: 1.8rem 0;
+      padding: 2rem 0;
       transition: padding-left 0.2s;
+    }
+
+    .article-card:first-of-type {
+      border-top: 1px solid var(--border);
     }
 
     .article-card:hover {
@@ -127,39 +118,38 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--ink-light);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
     }
 
     .card-title {
       font-family: var(--serif);
-      font-size: clamp(20px, 3vw, 26px);
+      font-size: 26px;
       font-weight: 400;
       color: var(--ink);
       line-height: 1.25;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.7rem;
       transition: color 0.2s;
     }
 
     .card-subtitle {
-      font-size: 15px;
+      font-size: 16px;
       color: var(--ink-mid);
-      line-height: 1.65;
+      line-height: 1.6;
       font-style: italic;
       max-width: 520px;
     }
 
     .card-arrow {
       display: inline-block;
-      margin-top: 0.8rem;
-      font-size: 12px;
+      margin-top: 1rem;
+      font-size: 13px;
       color: var(--accent);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
     }
 
-    /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
-      padding: 1.8rem 2rem;
+      padding: 2rem;
       text-align: center;
       font-size: 12px;
       color: var(--ink-light);
@@ -167,8 +157,8 @@
     }
 
     @media (max-width: 600px) {
-      nav { padding: 1.2rem 1.2rem; }
-      .site-header { padding: 2.5rem 1.2rem 2rem; margin-top: 2rem; }
+      nav { padding: 1.2rem; }
+      .hero { margin: 3rem auto 2.5rem; padding: 0 1.2rem; }
       .articles-section { padding: 0 1.2rem; }
     }
   </style>
@@ -180,10 +170,10 @@
     <span class="nav-tagline">note a margine sul mondo</span>
   </nav>
 
-  <header class="site-header">
-    <h1 class="site-header-tagline">Guardare il mondo<br>da un altro angolo</h1>
-    <p class="site-header-title">Saggi, osservazioni, letture del presente. Tutto quello che vale la pena guardare da vicino.</p>
-  </header>
+  <section class="hero">
+    <h1>Guardare il mondo<br>da un altro angolo</h1>
+    <p>Saggi, osservazioni, letture del presente. Società, cultura, politica — tutto quello che vale la pena guardare da vicino.</p>
+  </section>
 
   <section class="articles-section">
     <p class="section-label">Articoli</p>
