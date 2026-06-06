@@ -239,6 +239,71 @@
       .hero { margin: 3rem auto 2.5rem; padding: 0 1.2rem; }
       .articles-section { padding: 0 1.2rem; }
     }
+
+    .newsletter-section {
+      max-width: 720px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .newsletter-box {
+      background: #ede7d9;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+    }
+
+    .newsletter-box h3 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .newsletter-box p {
+      font-size: 14px;
+      color: var(--ink-mid);
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.6rem 1rem;
+      font-size: 15px;
+      font-family: var(--body);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .newsletter-input:focus {
+      border-color: var(--accent);
+    }
+
+    .newsletter-submit {
+      padding: 0.6rem 1.4rem;
+      font-size: 14px;
+      font-family: var(--body);
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .newsletter-submit:hover { opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -294,6 +359,18 @@
     })();
   </script>
 
+  <section class="newsletter-section">
+    <div class="newsletter-box">
+      <h3>Nuovi articoli via email</h3>
+      <p>Niente spam — solo un avviso quando esce qualcosa di nuovo.</p>
+      <form class="newsletter-form" action="https://api.buttondown.email/v1/subscribers" method="post" target="_blank">
+        <input type="hidden" name="api_key" value="91152aaf-3d97-4bcb-926a-7a51ab5a0953">
+        <input class="newsletter-input" type="email" name="email" placeholder="la tua email" required>
+        <button class="newsletter-submit" type="submit">Iscriviti</button>
+      </form>
+    </div>
+  </section>
+
   <section class="articles-section">
     <p class="section-label">Articoli</p>
 
@@ -330,7 +407,6 @@
   </section>
 
   <footer>
-    <p class="newsletter-hint">Vuoi ricevere i nuovi articoli? <a href="https://buttondown.com/lauranappi" target="_blank">Iscriviti alla newsletter →</a></p>
     © 2026 Laura Nappi · Margine
   </footer>
 
