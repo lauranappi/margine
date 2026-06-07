@@ -295,49 +295,49 @@
   <section class="articles-section">
     <p class="section-label">Articoli</p>
 
-    <a class="article-card" href="articoli/la-e-rovesciata-e-il-confine-del-reale.html">
+    <a class="article-card" href="articoli/la-e-rovesciata-e-il-confine-del-reale.html" data-date="2026-06-07">
       <p class="card-meta">Linguaggio &amp; Identità · Giugno 2026</p>
       <h2 class="card-title">La ə rovesciata e il confine del reale</h2>
       <p class="card-subtitle">Lo schwa è un simbolo fonetico. La disforia di genere è una condizione clinica. In mezzo c'è un dibattito che spesso confonde le due cose.</p>
       <span class="card-time">8 min · →</span>
     </a>
 
-    <a class="article-card" href="articoli/ci-vogliono-energie-per-essere-ansiosi.html">
+    <a class="article-card" href="articoli/ci-vogliono-energie-per-essere-ansiosi.html" data-date="2026-06-06">
       <p class="card-meta">Psicologia &amp; Corpo · Giugno 2026</p>
       <h2 class="card-title">Ci vogliono energie per essere ansiosi</h2>
       <p class="card-subtitle">L'ansia richiede carburante. La depressione lo toglie. Eppure le due cose coesistono — e questa contraddizione è una delle più difficili da spiegare a chi non la vive.</p>
       <span class="card-time">7 min · →</span>
     </a>
 
-    <a class="article-card" href="articoli/e-se-il-comunismo-funzionasse-adesso.html">
+    <a class="article-card" href="articoli/e-se-il-comunismo-funzionasse-adesso.html" data-date="2026-06-05">
       <p class="card-meta">Politica &amp; Società · Giugno 2026</p>
       <h2 class="card-title">E se il comunismo funzionasse adesso?</h2>
       <p class="card-subtitle">I fallimenti storici del comunismo erano fallimenti pratici, non ideali. La tecnologia sta cambiando quelle variabili. Vale la pena riaprire la domanda.</p>
       <span class="card-time">8 min · →</span>
     </a>
 
-    <a class="article-card" href="articoli/me-lo-saro-immaginato.html">
+    <a class="article-card" href="articoli/me-lo-saro-immaginato.html" data-date="2026-06-04">
       <p class="card-meta">Psicologia &amp; Cognizione · Giugno 2026</p>
       <h2 class="card-title">Me lo sarò immaginato</h2>
       <p class="card-subtitle">Il cervello non registra la realtà — la racconta. E lo fa così bene, così in fretta, che quasi non ce ne accorgiamo mai.</p>
       <span class="card-time">6 min · →</span>
     </a>
 
-    <a class="article-card" href="articoli/quante-probabilita-che-la-mia-vita-sia-un-sogno.html">
+    <a class="article-card" href="articoli/quante-probabilita-che-la-mia-vita-sia-un-sogno.html" data-date="2026-06-03">
       <p class="card-meta">Filosofia &amp; Percezione · Giugno 2026</p>
       <h2 class="card-title">Quante probabilità che la mia vita sia un sogno?</h2>
       <p class="card-subtitle">Non puoi escluderlo. E questo, già di per sé, è interessante.</p>
       <span class="card-time">5 min · →</span>
     </a>
 
-    <a class="article-card" href="articoli/e-se-l-universo-non-fosse-infinito.html">
+    <a class="article-card" href="articoli/e-se-l-universo-non-fosse-infinito.html" data-date="2026-06-02">
       <p class="card-meta">Fisica &amp; Filosofia · Giugno 2026</p>
       <h2 class="card-title">E se l'universo non fosse infinito?</h2>
       <p class="card-subtitle">Un universo finito che esaurisce tutti gli scenari possibili è un'idea più inquietante dell'infinito — perché implica che ogni scelta esiste già da qualche parte.</p>
       <span class="card-time">6 min · →</span>
     </a>
 
-    <a class="article-card" href="articoli/il-mondo-esiste-solo-se-si-vede.html">
+    <a class="article-card" href="articoli/il-mondo-esiste-solo-se-si-vede.html" data-date="2026-06-01">
       <p class="card-meta">Percezione &amp; Società · Giugno 2026</p>
       <h2 class="card-title">Il mondo esiste solo se si vede</h2>
       <p class="card-subtitle">Come la supremazia evolutiva della vista ha plasmato non solo la nostra percezione, ma l'intera architettura della civiltà — e perché tutto ciò che non si mostra tende a non esistere.</p>
@@ -353,5 +353,16 @@
     © 2026 Laura Nappi · Margine
   </footer>
 
+
+  <script>
+    (function() {
+      var section = document.querySelector('.articles-section');
+      var cards = Array.from(section.querySelectorAll('.article-card'));
+      cards.sort(function(a, b) {
+        return new Date(b.dataset.date) - new Date(a.dataset.date);
+      });
+      cards.forEach(function(card) { section.appendChild(card); });
+    })();
+  </script>
 </body>
 </html>
