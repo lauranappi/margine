@@ -395,27 +395,32 @@
 
 
   <script>
-    (function() {
-      var section = document.querySelector('.articles-section');
-      var cards = Array.from(section.querySelectorAll('.article-card'));
-      cards.sort(function(a, b) {
-        return new Date(b.dataset.date) - new Date(a.dataset.date);
-      });
-      cards.forEach(function(card) { section.appendChild(card); });
-    })();
-  </script>
-
-  <script>
-    fetch('/margine/hidden.json?_=' + Date.now())
-      .then(r => r.json())
-      .then(data => {
+    fetch('/margine/hidden.json')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
         var hidden = data.hidden || [];
+        // Prima nascondi
         hidden.forEach(function(filename) {
           var cards = document.querySelectorAll('.article-card[href="articoli/' + filename + '"]');
           cards.forEach(function(card) { card.style.display = 'none'; });
         });
+        // Poi ordina solo quelle visibili
+        var section = document.querySelector('.articles-section');
+        var cards = Array.from(section.querySelectorAll('.article-card'));
+        cards.sort(function(a, b) {
+          return new Date(b.dataset.date) - new Date(a.dataset.date);
+        });
+        cards.forEach(function(card) { section.appendChild(card); });
       })
-      .catch(function(){});
+      .catch(function() {
+        // Se hidden.json non carica, ordina comunque
+        var section = document.querySelector('.articles-section');
+        var cards = Array.from(section.querySelectorAll('.article-card'));
+        cards.sort(function(a, b) {
+          return new Date(b.dataset.date) - new Date(a.dataset.date);
+        });
+        cards.forEach(function(card) { section.appendChild(card); });
+      });
   </script>
 </body>
 </html>
