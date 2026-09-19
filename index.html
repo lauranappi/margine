@@ -396,5 +396,18 @@
       cards.forEach(function(card) { section.appendChild(card); });
     })();
   </script>
+
+  <script>
+    fetch('/margine/hidden.json?_=' + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        var hidden = data.hidden || [];
+        hidden.forEach(function(filename) {
+          var cards = document.querySelectorAll('.article-card[href="articoli/' + filename + '"]');
+          cards.forEach(function(card) { card.style.display = 'none'; });
+        });
+      })
+      .catch(function(){});
+  </script>
 </body>
 </html>
