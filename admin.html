@@ -212,6 +212,10 @@ const REPO = 'lauranappi/margine';
 const BRANCH = 'master';
 const PWD = 'margine2026';
 
+// State in memory
+let hiddenFiles = [];
+let allArticles = [];
+
 // AUTH
 function checkAuth() { return sessionStorage.getItem('ma') === '1'; }
 document.getElementById('login-btn').addEventListener('click', doLogin);
@@ -246,25 +250,25 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 
 // GH API
 async function ghGet(path) {
-  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}?ref=${BRANCH}`, {
-    headers: {'Authorization': `token ${GH_TOKEN}`}
+  const r = await fetch('https://api.github.com/repos/'+REPO+'/contents/'+path+'?ref='+BRANCH, {
+    headers: {'Authorization': 'token '+GH_TOKEN, 'Cache-Control': 'no-cache'}
   });
-  if(!r.ok) throw new Error(`GET ${path}: ${r.status}`);
+  if(!r.ok) throw new Error('GET '+path+': '+r.status);
   return r.json();
 }
 async function ghPut(path, content, sha, msg) {
   const body = {message: msg, content: btoa(unescape(encodeURIComponent(content))), branch: BRANCH};
   if(sha) body.sha = sha;
-  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
-    method:'PUT', headers:{'Authorization':`token ${GH_TOKEN}`,'Content-Type':'application/json'},
+  const r = await fetch('https://api.github.com/repos/'+REPO+'/contents/'+path, {
+    method:'PUT', headers:{'Authorization':'token '+GH_TOKEN,'Content-Type':'application/json'},
     body: JSON.stringify(body)
   });
   if(!r.ok) { const e=await r.json(); throw new Error(e.message||r.status); }
   return r.json();
 }
 async function ghDelete(path, sha, msg) {
-  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
-    method:'DELETE', headers:{'Authorization':`token ${GH_TOKEN}`,'Content-Type':'application/json'},
+  const r = await fetch('https://api.github.com/repos/'+REPO+'/contents/'+path, {
+    method:'DELETE', headers:{'Authorization':'token '+GH_TOKEN,'Content-Type':'application/json'},
     body: JSON.stringify({message:msg, sha, branch:BRANCH})
   });
   if(!r.ok) throw new Error(r.status);
@@ -278,107 +282,99 @@ function toast(msg, err=false) {
   setTimeout(()=>t.className='toast',3000);
 }
 
-// LOAD ARTICLES
+// RENDER ARTICLES (uses in-memory state, no network)
+function renderArticles() {
+  const sec = document.getElementById('visible-section');
+  const visible = allArticles.filter(a => !hiddenFiles.includes(a.name));
+  const hidden = allArticles.filter(a => hiddenFiles.includes(a.name));
+
+  let html = '';
+
+  html += '<p class="section-label" style="margin-bottom:0.8rem;">Visibili ('+visible.length+')</p>';
+  if(visible.length === 0) {
+    html += '<p class="empty-msg">Nessun articolo visibile.</p>';
+  } else {
+    html += '<div class="article-grid">';
+    visible.forEach(art => {
+      const title = art.name.replace('.html','').replace(/-/g,' ');
+      html += '<div class="article-card-admin"><div class="card-admin-info"><div class="card-admin-title"><a href="articoli/'+art.name+'" target="_blank">'+title+'</a></div><div class="card-admin-meta">'+art.name+'</div></div><div class="card-admin-actions"><button class="btn-action warning" onclick="toggleVisibility(''+art.name+'',false)">Nascondi</button><button class="btn-action danger" onclick="deleteArticle(''+art.name+'')">Elimina</button></div></div>';
+    });
+    html += '</div>';
+  }
+
+  html += '<p class="section-label" style="margin-top:2rem;margin-bottom:0.8rem;">Nascosti ('+hidden.length+')</p>';
+  if(hidden.length === 0) {
+    html += '<p class="empty-msg">Nessun articolo nascosto.</p>';
+  } else {
+    html += '<div class="article-grid">';
+    hidden.forEach(art => {
+      const title = art.name.replace('.html','').replace(/-/g,' ');
+      html += '<div class="article-card-admin hidden"><div class="card-admin-info"><div class="card-admin-title"><a href="articoli/'+art.name+'" target="_blank">'+title+'</a></div><div class="card-admin-meta">'+art.name+'</div></div><div class="card-admin-actions"><button class="btn-action success" onclick="toggleVisibility(''+art.name+'',true)">Rendi visibile</button><button class="btn-action danger" onclick="deleteArticle(''+art.name+'')">Elimina</button></div></div>';
+    });
+    html += '</div>';
+  }
+
+  sec.innerHTML = html;
+}
+
+// LOAD ARTICLES (network call, updates memory then renders)
 async function loadArticles() {
   const sec = document.getElementById('visible-section');
   sec.innerHTML = '<p class="loading-msg">Caricamento...</p>';
   try {
     const [hiddenData, files] = await Promise.all([ghGet('hidden.json'), ghGet('articoli')]);
-    const hiddenRaw = atob(hiddenData.content.replace(/\n/g,''));
-    const hiddenList = JSON.parse(hiddenRaw).hidden || [];
-    const articles = files.filter(f => f.name.endsWith('.html'));
-
-    const visible = [], hidden = [];
-    for(const art of articles) {
-      const isHidden = hiddenList.includes(art.name);
-      (isHidden ? hidden : visible).push(art);
-    }
-
-    let html = '';
-
-    // VISIBLE
-    html += `<p class="section-label" style="margin-bottom:0.8rem;">Visibili (${visible.length})</p>`;
-    if(visible.length === 0) {
-      html += '<p class="empty-msg">Nessun articolo visibile.</p>';
-    } else {
-      html += '<div class="article-grid">';
-      for(const art of visible) {
-        const title = art.name.replace('.html','').replace(/-/g,' ');
-        html += `<div class="article-card-admin">
-          <div class="card-admin-info">
-            <div class="card-admin-title"><a href="articoli/${art.name}" target="_blank">${title}</a></div>
-            <div class="card-admin-meta">${art.name}</div>
-          </div>
-          <div class="card-admin-actions">
-            <button class="btn-action warning" onclick="toggleVisibility('${art.name}',false)">Nascondi</button>
-            <button class="btn-action danger" onclick="deleteArticle('${art.name}')">Elimina</button>
-          </div>
-        </div>`;
-      }
-      html += '</div>';
-    }
-
-    // HIDDEN
-    html += `<p class="section-label" style="margin-top:2rem;margin-bottom:0.8rem;">Nascosti (${hidden.length})</p>`;
-    if(hidden.length === 0) {
-      html += '<p class="empty-msg">Nessun articolo nascosto.</p>';
-    } else {
-      html += '<div class="article-grid">';
-      for(const art of hidden) {
-        const title = art.name.replace('.html','').replace(/-/g,' ');
-        html += `<div class="article-card-admin hidden">
-          <div class="card-admin-info">
-            <div class="card-admin-title"><a href="articoli/${art.name}" target="_blank">${title}</a></div>
-            <div class="card-admin-meta">${art.name}</div>
-          </div>
-          <div class="card-admin-actions">
-            <button class="btn-action success" onclick="toggleVisibility('${art.name}',true)">Rendi visibile</button>
-            <button class="btn-action danger" onclick="deleteArticle('${art.name}')">Elimina</button>
-          </div>
-        </div>`;
-      }
-      html += '</div>';
-    }
-
-    sec.innerHTML = html;
+    const hiddenRaw = decodeURIComponent(escape(atob(hiddenData.content.replace(/\n/g,''))));
+    hiddenFiles = JSON.parse(hiddenRaw).hidden || [];
+    allArticles = files.filter(f => f.name.endsWith('.html'));
+    renderArticles();
   } catch(e) {
-    sec.innerHTML = '<p class="empty-msg">Errore nel caricamento: '+e.message+'</p>';
+    sec.innerHTML = '<p class="empty-msg">Errore: '+e.message+'</p>';
   }
 }
 
-// TOGGLE VISIBILITY
+// TOGGLE VISIBILITY — aggiorna stato in memoria, poi salva in background
 async function toggleVisibility(filename, show) {
+  // Aggiorna subito la memoria e ridisegna
+  if(!show) {
+    if(!hiddenFiles.includes(filename)) hiddenFiles.push(filename);
+  } else {
+    hiddenFiles = hiddenFiles.filter(f => f !== filename);
+  }
+  renderArticles();
+
+  // Salva su GitHub in background
   try {
-    const indexData = await ghGet('index.html');
-    const indexContent = decodeURIComponent(escape(atob(indexData.content.replace(/\n/g,''))));
-    let updated;
-    if(!show) {
-      const re = new RegExp(`([ \\t]*<a class="article-card"[^>]*href="articoli/${filename.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}[^"]*"[\\s\\S]*?<\\/a>)`, 'g');
-      updated = indexContent.replace(re, `<!--HIDDEN:${filename}\n$1\n-->`);
-    } else {
-      const re = new RegExp(`<!--HIDDEN:${filename.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\n([\\s\\S]*?)\\n-->`, 'g');
-      updated = indexContent.replace(re, '$1');
-    }
-    await ghPut('index.html', updated, indexData.sha, `${show?'Mostra':'Nascondi'}: ${filename}`);
-    toast(show ? 'Articolo reso visibile ✓' : 'Articolo nascosto ✓');
-    loadArticles();
-  } catch(e) { toast('Errore: '+e.message, true); }
+    const hiddenData = await ghGet('hidden.json');
+    const newJson = JSON.stringify({hidden: hiddenFiles}, null, 2);
+    await ghPut('hidden.json', newJson, hiddenData.sha, (show?'Mostra':'Nascondi')+': '+filename);
+    toast(show ? 'Reso visibile ✓' : 'Nascosto ✓');
+  } catch(e) {
+    toast('Errore salvataggio: '+e.message, true);
+    // Ripristina
+    if(!show) { hiddenFiles = hiddenFiles.filter(f => f !== filename); }
+    else { if(!hiddenFiles.includes(filename)) hiddenFiles.push(filename); }
+    renderArticles();
+  }
 }
 
 // DELETE
 async function deleteArticle(filename) {
-  if(!confirm(`Eliminare definitivamente "${filename}"?\nQuesta azione non è reversibile.`)) return;
+  if(!confirm('Eliminare definitivamente "'+filename+'"?\nQuesta azione non è reversibile.')) return;
   try {
-    const fileData = await ghGet(`articoli/${filename}`);
-    await ghDelete(`articoli/${filename}`, fileData.sha, `Elimina: ${filename}`);
+    const fileData = await ghGet('articoli/'+filename);
+    await ghDelete('articoli/'+filename, fileData.sha, 'Elimina: '+filename);
+    // Remove from index.html card
     const indexData = await ghGet('index.html');
     const indexContent = decodeURIComponent(escape(atob(indexData.content.replace(/\n/g,''))));
     const esc = filename.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-    const re = new RegExp(`\\n\\n[ \\t]*(?:<!--HIDDEN:[\\s\\S]*?-->\\n)?<a class="article-card"[^>]*href="articoli/${esc}[^"]*"[\\s\\S]*?<\\/a>`, 'g');
+    const re = new RegExp('\\n\\n[ \\t]*<a class="article-card"[^>]*href="articoli/'+esc+'[^"]*"[\\s\\S]*?<\\/a>', 'g');
     const updated = indexContent.replace(re,'');
-    await ghPut('index.html', updated, indexData.sha, `Rimuove card: ${filename}`);
-    toast('Articolo eliminato ✓');
-    loadArticles();
+    await ghPut('index.html', updated, indexData.sha, 'Rimuove card: '+filename);
+    // Update memory
+    allArticles = allArticles.filter(a => a.name !== filename);
+    hiddenFiles = hiddenFiles.filter(f => f !== filename);
+    renderArticles();
+    toast('Eliminato ✓');
   } catch(e) { toast('Errore: '+e.message, true); }
 }
 
