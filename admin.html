@@ -283,7 +283,7 @@ async function loadArticles() {
   const sec = document.getElementById('visible-section');
   sec.innerHTML = '<p class="loading-msg">Caricamento...</p>';
   try {
-    const [hiddenData, files] = await Promise.all([ghGet('hidden.json?_='+Date.now()), ghGet('articoli')]);
+    const [hiddenData, files] = await Promise.all([ghGet('hidden.json'), ghGet('articoli')]);
     const hiddenRaw = atob(hiddenData.content.replace(/\n/g,''));
     const hiddenList = JSON.parse(hiddenRaw).hidden || [];
     const articles = files.filter(f => f.name.endsWith('.html'));
